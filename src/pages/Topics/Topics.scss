@@ -1,0 +1,47 @@
+.topics {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    font-size: 36px;
+  }
+
+  &__table {
+    border-radius: 10px;
+    width: 80%;
+    font-size: 18px;
+
+    th {
+      padding: 10px;
+    }
+
+    td {
+      padding: 20px;
+    }
+  }
+
+  button {
+
+    a {
+      color: #ffffff;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+
+    &__title {
+      font-size: 28px;
+    }
+
+    &__table {
+      font-size: 16px;
+    }
+
+    button {
+      font-size: 16px;
+      width: 80px;
+    }
+  }
+}

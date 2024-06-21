@@ -1,0 +1,1 @@
+export const listOfABCD = ['A', 'B', 'C', 'D'];

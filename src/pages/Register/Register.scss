@@ -1,0 +1,32 @@
+.register {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    font-size: 36px;
+  }
+
+  &__form {
+    width: 70%;
+    border-radius: 10px;
+    background-color: #dddddd;
+    padding: 60px 0;
+  }
+
+  &__input {
+
+    input {
+      padding: 20px;
+      width: 80%;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      font-size: 18px;
+
+      &:focus {
+        box-shadow: 2px 2px 2px 2px var(--color-one);
+      }
+    }
+  }
+}
