@@ -26,6 +26,7 @@ function Questions() {
       });
     }
     fetchApi();
+    // eslint-disable-next-line
   }, []);
 
   const handleSubmit = async (e) => {
