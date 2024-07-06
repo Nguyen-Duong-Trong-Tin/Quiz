@@ -9,6 +9,7 @@ import { getCookie } from "../../helpers/cookies";
 
 function LayoutDefault() {
   const isLogin = useSelector(state => state.loginReducer);
+  const token = getCookie("token");
 
   const fullName = getCookie("fullName");
 
@@ -27,7 +28,7 @@ function LayoutDefault() {
               </Link>
             </div>
             <div className="header__account">
-              {isLogin && <h3>{fullName}</h3>}
+              {token && <h3>{fullName}</h3>}
             </div>
           </div>
           <div className="header__main">
@@ -35,7 +36,7 @@ function LayoutDefault() {
               <li>
                 <NavLink to="/" className={navLinkActive}>Home</NavLink>
               </li>
-              {isLogin && (
+              {token && (
                 <>
                   <li>
                     <NavLink to="/topics" className={navLinkActive}>Topics</NavLink>
@@ -47,7 +48,7 @@ function LayoutDefault() {
               )}
             </ul>
             <ul className="header__right">
-              {isLogin ? (
+              {token ? (
                 <>
                   <li>
                     <NavLink to="/logout" className={navLinkActive}>Logout</NavLink>

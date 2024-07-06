@@ -11,7 +11,6 @@ function Register() {
     const password = e.target[2].value;
     const cofirmPassword = e.target[3].value;
 
-
     const resultGetUser = await getUser(email);
 
     if (resultGetUser.length > 0) {
