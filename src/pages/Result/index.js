@@ -1,22 +1,20 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getAnswer } from "../../services/answersService";
-import { getQuestions } from "../../services/questionsService";
+import { getAnswerByID } from "../../services/answersService";
+import { getQuestionsByTopicID } from "../../services/questionsService";
 import "./Result.scss";
 import { handleResult } from "../../helpers/handle";
 import { listOfABCD } from "../../helpers/constants";
 
 function Result() {
   const params = useParams();
-
   const [data, setData] = useState([]);
-
   let result = handleResult(data);
 
   useEffect(() => {
     const fetchApi = async () => {
-      const resultAnswers = await getAnswer(params.id);
-      const resultQuestions = await getQuestions(resultAnswers.topicId);
+      const resultAnswers = await getAnswerByID(params.id);
+      const resultQuestions = await getQuestionsByTopicID(resultAnswers.topicId);
 
       setData(resultAnswers.answers.map(item => {
         const element = resultQuestions.find(val => val.id === item.questionId);
@@ -37,8 +35,6 @@ function Result() {
     fetchApi();
     // eslint-disable-next-line
   }, []);
-
-  console.log(data);
 
   return (
     <>

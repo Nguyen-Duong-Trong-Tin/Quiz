@@ -1,5 +1,5 @@
 import { generateToken } from "../../helpers/generateToken";
-import { createUser, getUser } from "../../services/usersService";
+import { checkExistEmail, register } from "../../services/usersService";
 import "./Register.scss";
 
 function Register() {
@@ -11,15 +11,13 @@ function Register() {
     const password = e.target[2].value;
     const cofirmPassword = e.target[3].value;
 
-    const resultGetUser = await getUser(email);
+    const existUser = await checkExistEmail(email);
 
-    if (resultGetUser.length > 0) {
-      console.log("Email da ton tai");
-    }
-    else if (password !== cofirmPassword) {
-      console.log("Mat khau nhap lai khong trung voi mat khau truoc do");
-    }
-    else {
+    if (existUser.length > 0) {
+      alert("Existed email");
+    } else if (password !== cofirmPassword) {
+      alert("Mat khau nhap lai khong trung voi mat khau truoc do");
+    } else {
       const options = {
         fullName: fullName,
         email: email,
@@ -27,10 +25,10 @@ function Register() {
         token: generateToken(20)
       }
 
-      const resultCreateUser = await createUser(options);
+      const resultCreateUser = await register(options);
 
       if (resultCreateUser) {
-        console.log("Tao thanh cong");
+        alert("Tạo tài khoản thành công");
       }
     }
   }

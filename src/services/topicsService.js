@@ -1,8 +1,11 @@
 import { get } from "../utils/request"
 
-export const getTopics = async (id = "") => {
-  const pId = id === "" ? "" : `id=${id}`;
+export const getTopics = async () => {
+  const result = await get("topics");
+  return result;
+}
 
-  const result = await get(`topics?${pId}`);
+export const getTopicByID = async (id) => {
+  const result = await get(`topics/${id}`);
   return result;
 }

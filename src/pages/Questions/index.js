@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getQuestions } from "../../services/questionsService";
-import { getTopics } from "../../services/topicsService";
+import { getQuestionsByTopicID } from "../../services/questionsService";
+import { getTopicByID } from "../../services/topicsService";
 import { getCookie } from "../../helpers/cookies";
-import { postAnswer } from "../../services/answersService";
+import { createAnswer } from "../../services/answersService";
 import { handleAnswer } from "../../helpers/handle";
 import { randomQuestions } from "../../helpers/randomQuestions";
 import "./Questions.scss";
@@ -11,17 +11,15 @@ import { listOfABCD } from "../../helpers/constants";
 
 function Questions() {
   const params = useParams();
-
   const [data, setData] = useState();
-
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchApi = async () => {
-      const resultTopic = await getTopics(params.id);
-      const resultQuestions = await getQuestions(params.id);
+      const resultTopic = await getTopicByID(params.id);
+      const resultQuestions = await getQuestionsByTopicID(params.id);
       setData({
-        topic: resultTopic[0],
+        topic: resultTopic,
         questions: randomQuestions(resultQuestions, 20)
       });
     }
@@ -40,7 +38,7 @@ function Questions() {
       answers: arrayAnswers.map(item => item)
     };
 
-    const result = await postAnswer(options);
+    const result = await createAnswer(options);
 
     if (result) {
       navigate(`/result/${result.id}`);

@@ -1,12 +1,12 @@
-import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
+import { getCookie } from "../../helpers/cookies";
 
 function PrivateRoutes() {
-  const isLogin = useSelector(state => state.loginReducer);
+  const token = getCookie("token");
 
   return (
     <>
-      {isLogin ? (<Outlet />) : (<Navigate to="/login" />)}
+      {token ? (<Outlet />) : (<Navigate to="/login" />)}
     </>
   )
 }

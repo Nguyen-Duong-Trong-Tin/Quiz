@@ -1,13 +1,13 @@
 import { setCookie } from "../../helpers/cookies";
-import { getUser } from "../../services/usersService";
-import { useNavigate } from "react-router-dom"; import { useDispatch } from 'react-redux';
+import { login } from "../../services/usersService";
+import { useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 import { checkLogin } from "../../actions/login";
 import "./Login.scss";
 
 function Login() {
-  const navigate = useNavigate();
-
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,7 +15,7 @@ function Login() {
     const email = e.target[0].value;
     const password = e.target[1].value;
 
-    const result = await getUser(email, password);
+    const result = await login(email, password);
 
     if (result.length > 0) {
       setCookie("id", result[0].id, 1);
@@ -24,6 +24,8 @@ function Login() {
       setCookie("token", result[0].token, 1);
       dispatch(checkLogin(true));
       navigate("/");
+    } else {
+      alert("Wrong the email or the password!");
     }
   }
 
@@ -41,7 +43,6 @@ function Login() {
           <button className="button button--submit" type="submit">Login</button>
         </form>
       </div>
-
     </>
   )
 }

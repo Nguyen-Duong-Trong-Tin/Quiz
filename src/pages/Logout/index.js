@@ -2,17 +2,18 @@ import { useNavigate } from "react-router-dom";
 import { deleteAllCookies } from "../../helpers/cookies";
 import { useDispatch } from "react-redux";
 import { checkLogin } from "../../actions/login";
+import { useEffect } from "react";
 
 function Logout() {
-  const navigate = useNavigate();
-
   const dispatch = useDispatch();
-
-  navigate("/login");
+  const navigate = useNavigate();
 
   deleteAllCookies();
 
-  dispatch(checkLogin(false));
+  useEffect(() => {
+    dispatch(checkLogin(false));
+    navigate("/login");
+  }, []);
 
   return (
     <>

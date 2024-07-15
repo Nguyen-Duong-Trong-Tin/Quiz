@@ -1,7 +1,6 @@
 import './App.scss';
 import AllRoutes from './components/AllRoutes';
 
-
 function App() {
   return (
     <>

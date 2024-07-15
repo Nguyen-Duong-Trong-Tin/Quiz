@@ -14,8 +14,6 @@ function Topics() {
     fetchApi();
   }, []);
 
-  console.log(data);
-
   return (
     <>
       <div className="topics">

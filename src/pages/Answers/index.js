@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAnswers } from "../../services/answersService";
+import { getAnswersByUserID } from "../../services/answersService";
 import { getCookie } from "../../helpers/cookies";
 import { Link } from "react-router-dom";
 import { getTopics } from "../../services/topicsService";
@@ -10,7 +10,7 @@ function Answers() {
 
   useEffect(() => {
     const fetchApi = async () => {
-      const resultAnswers = await getAnswers(getCookie("id"));
+      const resultAnswers = await getAnswersByUserID(getCookie("id"));
       const resultTopics = await getTopics();
       setData(resultAnswers.map(item => (
         {
