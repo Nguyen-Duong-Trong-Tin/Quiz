@@ -41,9 +41,9 @@ function Answers() {
                 <td>{item.id}</td>
                 <td>{item.name}</td>
                 <td>
-                  <button className="button button--submit">
-                    <Link to={`/result/${item.id}`}>Watch</Link>
-                  </button>
+                  <Link to={`/result/${item.id}`}>
+                    <button className="button button--submit">Watch</button>
+                  </Link>
                 </td>
               </tr>
             ))}

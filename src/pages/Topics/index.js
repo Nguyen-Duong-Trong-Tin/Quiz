@@ -32,9 +32,9 @@ function Topics() {
                 <td>{item.id}</td>
                 <td>{item.name}</td>
                 <td>
-                  <button className="button button--submit">
-                    <Link to={`/questions/${item.id}`}>Test</Link>
-                  </button>
+                  <Link to={`/questions/${item.id}`}>
+                    <button className="button button--submit">Test</button>
+                  </Link>
                 </td>
               </tr>
             ))}
